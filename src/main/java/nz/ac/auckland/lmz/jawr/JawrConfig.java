@@ -17,11 +17,13 @@ import java.util.Properties;
  * @author: Richard Vowles - https://plus.google.com/+RichardVowles
  */
 public class JawrConfig implements ConfigPropertiesSource {
-	protected static Logger log =  LoggerFactory.getLogger(JawrConfig.class);
+	protected Logger log =  LoggerFactory.getLogger(getClass());
 
 	protected JawrResourceScanListener resourceScanListener;
 
-	static class JawrResourceScanListener implements ResourceScanListener {
+	Properties jawrProperties = new Properties();
+
+	class JawrResourceScanListener implements ResourceScanListener {
 		Properties config = new Properties();
 		List<ResourceScanListener.ScanResource> resources = new ArrayList<>();
 
@@ -58,6 +60,15 @@ public class JawrConfig implements ConfigPropertiesSource {
 		interestingResource) {
 			return InterestAction.REPEAT;
 		}
+
+		@Override
+		public void scanAction(ScanAction action) {
+			if (action == ScanAction.STARTING) {
+				config = new Properties();
+			} else if (action == ScanAction.COMPLETE) {
+				jawrProperties = config;
+			}
+		}
 	}
 
 	public JawrConfig() {
@@ -69,11 +80,10 @@ public class JawrConfig implements ConfigPropertiesSource {
 	@Override
 	public Properties getConfigProperties() {
 		if (Flags.DEVMODE.on()) {
-			resourceScanListener.config.clear();
 			ClasspathScanner.getInstance().scan(getClass().getClassLoader(), true);
 		}
 
-		return resourceScanListener.config;
+		return jawrProperties;
 	}
 
 	@Override
