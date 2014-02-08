@@ -22,6 +22,7 @@ public class JawrConfig implements ConfigPropertiesSource {
 	protected JawrResourceScanListener resourceScanListener;
 
 	Properties jawrProperties = new Properties();
+	protected boolean scanned = false;
 
 	class JawrResourceScanListener implements ResourceScanListener {
 		Properties config = new Properties();
@@ -29,6 +30,8 @@ public class JawrConfig implements ConfigPropertiesSource {
 
 		@Override
 		public List<ResourceScanListener.ScanResource> resource(List< ResourceScanListener.ScanResource > scanResources) throws Exception {
+			scanned = true; // the scanner has run at least once, so when getConfigProperties is called further down we know not to do it again
+
 			resources.clear();
 
 			for (ResourceScanListener.ScanResource scanResource : scanResources) {
@@ -79,7 +82,7 @@ public class JawrConfig implements ConfigPropertiesSource {
 
 	@Override
 	public Properties getConfigProperties() {
-		if (Flags.DEVMODE.on()) {
+		if (Flags.DEVMODE.on() || !scanned) {
 			ClasspathScanner.getInstance().scan(getClass().getClassLoader(), true);
 		}
 
