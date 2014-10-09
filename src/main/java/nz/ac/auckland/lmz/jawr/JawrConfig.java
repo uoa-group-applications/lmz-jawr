@@ -26,7 +26,7 @@ public class JawrConfig implements ConfigPropertiesSource {
 
 	class JawrResourceScanListener implements ResourceScanListener {
 		Properties config = new Properties();
-		List<ResourceScanListener.ScanResource> resources = new ArrayList<>();
+		List<ResourceScanListener.ScanResource> resources = new ArrayList<ResourceScanListener.ScanResource>();
 
 		@Override
 		public List<ResourceScanListener.ScanResource> resource(List< ResourceScanListener.ScanResource > scanResources) throws Exception {

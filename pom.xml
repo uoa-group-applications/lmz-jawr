@@ -31,8 +31,8 @@
 		</dependency>
 		<dependency>
 			<groupId>net.jawr</groupId>
-			<artifactId>jawr</artifactId>
-			<version>[3.3.3,4)</version>
+			<artifactId>jawr-core</artifactId>
+			<version>[3.6,4)</version>
 		</dependency>
 		<dependency>
 			<groupId>com.bluetrainsoftware</groupId>

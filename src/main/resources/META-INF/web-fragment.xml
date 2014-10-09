@@ -16,7 +16,22 @@
 			<param-name>mapping</param-name>
 			<param-value>/bundle/js</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>jawr-binary-servlet</servlet-name>
+		<servlet-class>net.jawr.web.servlet.JawrServlet</servlet-class>
+		<init-param>
+			<param-name>type</param-name>
+			<param-value>binary</param-value>
+		</init-param>
+		<init-param>
+			<param-name>configPropertiesSourceClass</param-name>
+			<param-value>nz.ac.auckland.lmz.jawr.JawrConfig</param-value>
+		</init-param>
+		<!-- The Jawr Binary servlet must start before the Jawr CSS Servlet -->
+		<load-on-startup>0</load-on-startup>
 	</servlet>
 
 	<servlet>
@@ -51,6 +66,33 @@
 	<servlet-mapping>
 		<servlet-name>jawr-css-servlet</servlet-name>
 		<url-pattern>/bundle/css/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- Images mapping -->
+	<servlet-mapping>
+		<servlet-name>jawr-binary-servlet</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jawr-binary-servlet</servlet-name>
+		<url-pattern>*.gif</url-pattern>
+	</servlet-mapping>
+	<!-- Fonts mapping -->
+	<servlet-mapping>
+		<servlet-name>jawr-binary-servlet</servlet-name>
+		<url-pattern>*.woff</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jawr-binary-servlet</servlet-name>
+		<url-pattern>*.ttf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jawr-binary-servlet</servlet-name>
+		<url-pattern>*.svg</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jawr-binary-servlet</servlet-name>
+		<url-pattern>*.eot</url-pattern>
 	</servlet-mapping>
 
 </web-fragment>
