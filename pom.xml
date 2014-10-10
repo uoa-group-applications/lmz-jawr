@@ -10,7 +10,7 @@
 
 	<groupId>nz.ac.auckland.groupapps.lmz</groupId>
 	<artifactId>lmz-jawr</artifactId>
-	<version>1.2</version>
+	<version>1.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>lmz-jawr</name>
@@ -20,7 +20,7 @@
 		<connection>scm:git:git@github.com:uoa-group-applications/lmz-jawr</connection>
 		<developerConnection>scm:git:git@github.com:uoa-group-applications/lmz-jawr</developerConnection>
 		<url>http://github.com/uoa-group-applications/lmz-jawr</url>
-		<tag>lmz-jawr-1.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<dependencies>
